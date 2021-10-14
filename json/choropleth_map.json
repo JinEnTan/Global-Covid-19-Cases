@@ -29,32 +29,30 @@
                     "url": "https://raw.githubusercontent.com/JinEnTan/Global-Covid-19-Cases/master/data/worldometer_coronavirus_summary_data.csv"
                     },
                     "key": "country",
-                    "fields": ["total_deaths","population"]
+                    "fields": ["total_deaths_per_1m_population"]
                   }
-                },
-                {
-                    "calculate": "datum.total_deaths/datum.population*100000",
-                    "as": "Death Cases per 100000 People"
                 }
               ], 
               "mark": {"type": "geoshape", "stroke": "white"},
               "encoding": {
                 "color": {
-                  "field": "total_deaths",
+                  "field": "total_deaths_per_1m_population",
                   "type": "quantitative",
                   "scale": {
                     "type": "threshold",
-                    "domain": [10000, 100000, 500000],
+                    "domain": [1, 100, 1000],
                     "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
-                  }
+                  },
+                  "title":"Total Deaths per 1 million Population"
                 },
                 "tooltip": [
                   {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-                  {"field": "total_deaths", "type": "quantitative","title": "Total number of Deaths"}
+                  {"field": "total_deaths_per_1m_population", "type": "quantitative","title":"Total Deaths per 1 million Population"}
                 ]
               }
             }
           ]
+          
           
         }
         
