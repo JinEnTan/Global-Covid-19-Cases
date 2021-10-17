@@ -119,7 +119,7 @@
           "value": 0.2
         },
         "tooltip": [
-          {"field": "country", "type": "nominal"},
+          {"field": "country", "type": "nominal","title":"Country"},
           {"field": "total_confirmed", "type": "quantitative", "format": ",","title":"Total Confirmed Cases"},
           {"field": "active_cases", "type": "quantitative", "format": ",","title":"Total Active Cases"},
           {"field": "total_deaths", "type": "quantitative", "format": ",","title":"Total Death Cases"},

@@ -20,4 +20,6 @@
    "mark": "bar", 
    "encoding": {
   "x": { "field": "total_recovered", "type": "quantitative","title":"Total Number of Recovered Cases" }, 
-  "y": { "field": "country", "type": "nominal" ,"sort": {"field": "total_recovered", "op": "max", "order":"descending"}} } }
+  "y": { "field": "country", "type": "nominal" ,"sort": {"field": "total_recovered", "op": "max", "order":"descending"}}
+   }
+  }
