@@ -1,57 +1,57 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 600,
-    "height": 600,
-    "data": {
-      "url": "https://raw.githubusercontent.com/JinEnTan/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-    },
-    "projection": {"type": "equalEarth"},
-    "layer":[
-        {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/JinEnTan/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "projection": {"type": "equirectangular"},
+  "layer":[
+      {
+        "transform": [
+          {"calculate": "'Data is not available in ' + datum.properties.NAME", "as": "note"}
+        ],
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+        "encoding": {
+          "tooltip": {
+            "field": "note"
+          }
+        }
+      },
+      {
           "transform": [
-            {"calculate": "'Data is not available in ' + datum.properties.NAME", "as": "note"}
-          ],
-          "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
-          "encoding": {
-            "tooltip": {
-              "field": "note"
+              {
+                  "lookup": "properties.NAME",
+                  "from": {
+                  "data": {
+                  "url": "https://raw.githubusercontent.com/JinEnTan/Global-Covid-19-Cases/master/data/worldometer_coronavirus_summary_data.csv"
+                  },
+                  "key": "country",
+                  "fields": ["total_deaths_per_1m_population"]
+                }
+              }
+            ], 
+            "mark": {"type": "geoshape", "stroke": "white"},
+            "encoding": {
+              "color": {
+                "field": "total_deaths_per_1m_population",
+                "type": "quantitative",
+                "scale": {
+                  "type": "threshold",
+                  "domain": [10,100,1000],
+                  "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
+                },
+                "legend":{"title":"Total Deaths per 1 million Population","titleLimit":1000,"labelOverlap":false}
+              },
+              "tooltip": [
+                {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+                {"field": "total_deaths_per_1m_population", "type": "quantitative","title":"Total Deaths per 1 million Population"}
+              ]
             }
           }
-        },
-        {
-            "transform": [
-                {
-                    "lookup": "properties.NAME",
-                    "from": {
-                    "data": {
-                    "url": "https://raw.githubusercontent.com/JinEnTan/Global-Covid-19-Cases/master/data/worldometer_coronavirus_summary_data.csv"
-                    },
-                    "key": "country",
-                    "fields": ["total_deaths_per_1m_population"]
-                  }
-                }
-              ], 
-              "mark": {"type": "geoshape", "stroke": "white"},
-              "encoding": {
-                "color": {
-                  "field": "total_deaths_per_1m_population",
-                  "type": "quantitative",
-                  "scale": {
-                    "type": "threshold",
-                    "domain": [1, 100, 1000],
-                    "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
-                  },
-                  "title":"Total Deaths per 1 million Population"
-                },
-                "tooltip": [
-                  {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-                  {"field": "total_deaths_per_1m_population", "type": "quantitative","title":"Total Deaths per 1 million Population"}
-                ]
-              }
-            }
-          ]
-          
-          
-        }
+        ]
+        
+        
+      }
         

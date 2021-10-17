@@ -1,7 +1,8 @@
 { 
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json", 
-    "width":650,
+    "width":875,
     "height":300,
+    "config": {"legend": {"disable": true}},
     "data": { "url": "https://raw.githubusercontent.com/JinEnTan/Global-Covid-19-Cases/master/data/worldometer_coronavirus_summary_data.csv" },
     "transform": [
         {"calculate": "parseInt(datum.total_recovered)", "as": "total_recovered"},
@@ -16,10 +17,26 @@
                     "filter": "datum.rank <= 10"
                   }
       ],
-  
    "mark": "bar", 
    "encoding": {
   "x": { "field": "total_recovered", "type": "quantitative","title":"Total Number of Recovered Cases" }, 
-  "y": { "field": "country", "type": "nominal" ,"sort": {"field": "total_recovered", "op": "max", "order":"descending"}}
-   }
+  "y": { "field": "country","title":"Country", "type": "nominal" ,"sort": {"field": "total_recovered", 
+  "op": "max", "order":"descending"}},
+  "color": {
+    "value": "lightblue",
+    "condition": {
+      "test": {
+        "field": "country",
+        "oneOf": ["India", "United States of America"]
+      },
+      "field": "country",
+      "type": "nominal",
+      "scale": {
+        "domain": ["India", "United States of America"],
+        "range": ["#de2d26","#fc9272"]
+      }
+    }
   }
+  
+  }
+}
