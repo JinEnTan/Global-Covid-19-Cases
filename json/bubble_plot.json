@@ -76,7 +76,7 @@
       "selection": {
         "continent_highlight": {
           "type": "multi",
-          "fields": ["Continent"],
+          "fields": ["continent"],
           "bind": "legend"
         }
       },
@@ -108,16 +108,16 @@
             ],
             "range": [
               "#d73027",
-"#fc8d59",
-"#762a83",
-"#8c510a",
-"#91bfdb",
-"#4575b4"
+              "#fc8d59",
+              "#762a83",
+              "#8c510a",
+              "#91bfdb",
+              "#4575b4"
             ]
           }
         },
         "opacity": {
-          "condition": {"selection": "continent_highlight", "value": 0.6},
+          "condition": {"selection": "continent_highlight", "value": 1},
           "value": 0.2
         },
         "tooltip": [
